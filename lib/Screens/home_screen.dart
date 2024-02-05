@@ -474,9 +474,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   backgroundColor: AppColors.primaryColor,
                 ),
                 BottomNavigationBarItem(
-                  icon:
-
-                  Icon(
+                  icon: Icon(
                     Icons.notification_add_rounded,
                     color: selectedIndex == 2
                         ? AppColors.primaryColor
@@ -760,10 +758,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                             });
                             closeDrawer();
                           },
-                          leading:
-
-
-                          Icon(
+                          leading: Icon(
                             Icons.notification_add_rounded,
                             color: selectedIndex == 2
                                 ? AppColors.primaryColor

@@ -81,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen> {
         headers: {
           "Content-Type": "text/xml; charset=utf-8",
           "SOAPAction": "http://tempuri.org/GetVersionApple",
-          "Host": "starlinebuild.co."
+          "Host": "starlinebuild.co.in"
           //"Accept": "text/xml"
         },
         body: envelope);
@@ -91,8 +91,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
     var chekis = parsedXml.text;
 
-    double apiVersion = double.parse(chekis);
-    double deviceAppVersion = double.parse(appVersion);
+    var apiVersion = double.parse(chekis);
+    var deviceAppVersion = double.parse(appVersion);
     if (deviceAppVersion < apiVersion) {
       showUpdateDialog();
     } else {
@@ -186,25 +186,30 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
-
-        child:  CustomText(text: 'New version is available, please update now for exploring best features of ${Constants.alertAndCnfTitle.toUpperCase()}', size: 15.0, textColor: AppColors.defaultColor, fontWeight: FontWeight.normal,align: TextAlign.center,)
-
-              ),
+                  padding: const EdgeInsets.all(10.0),
+                  child: CustomText(
+                    text:
+                        'New version is available, please update now for exploring best features of ${Constants.alertAndCnfTitle.toUpperCase()}',
+                    size: 15.0,
+                    textColor: AppColors.defaultColor,
+                    fontWeight: FontWeight.normal,
+                    align: TextAlign.center,
+                  )),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
                   child: Container(
-                    height: size.width * 0.11,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryLightColor,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    alignment: Alignment.center,
-                    child: const CustomText(text: 'Update', size: 15.0, textColor: AppColors.primaryColor, fontWeight: FontWeight.bold)
-
-
-                  ),
+                      height: size.width * 0.11,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryLightColor,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      alignment: Alignment.center,
+                      child: const CustomText(
+                          text: 'Update',
+                          size: 15.0,
+                          textColor: AppColors.primaryColor,
+                          fontWeight: FontWeight.bold)),
                   onTap: () {
                     StoreRedirect.redirect(
                       androidAppId: Constants.androidAppRateAndUpdate,
@@ -230,7 +235,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultColor,
-      body:Container(
+      body: Container(
         decoration: const BoxDecoration(
           // color:
           image: DecorationImage(
@@ -270,29 +275,4 @@ class _SplashScreenState extends State<SplashScreen> {
     //   }
     // });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
