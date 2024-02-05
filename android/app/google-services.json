@@ -1,0 +1,190 @@
+{
+  "project_info": {
+    "project_number": "584287632529",
+    "project_id": "flutter-application-3949f",
+    "storage_bucket": "flutter-application-3949f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584287632529:android:63cd04f28798f749b0d330",
+        "android_client_info": {
+          "package_name": "com.flutterterminal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOyf8H67hDHyhjA0mpsxG6O-XTXlrjgpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "584287632529-a2qlr87a3eidgedpcdlr87iknp8aesfu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.KeshavJewellers"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584287632529:android:0328623e03f99e79b0d330",
+        "android_client_info": {
+          "package_name": "com.keshavjewellers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOyf8H67hDHyhjA0mpsxG6O-XTXlrjgpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "584287632529-a2qlr87a3eidgedpcdlr87iknp8aesfu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.KeshavJewellers"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584287632529:android:87843b6f0d2094b8b0d330",
+        "android_client_info": {
+          "package_name": "com.ljplspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOyf8H67hDHyhjA0mpsxG6O-XTXlrjgpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "584287632529-a2qlr87a3eidgedpcdlr87iknp8aesfu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.KeshavJewellers"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584287632529:android:290a2b4a9c7bf458b0d330",
+        "android_client_info": {
+          "package_name": "com.shantinathjewellers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOyf8H67hDHyhjA0mpsxG6O-XTXlrjgpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "584287632529-a2qlr87a3eidgedpcdlr87iknp8aesfu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.KeshavJewellers"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584287632529:android:fa107d6f942c6adbb0d330",
+        "android_client_info": {
+          "package_name": "com.siddhivinayakbullion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOyf8H67hDHyhjA0mpsxG6O-XTXlrjgpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584287632529-9gu9n0tmq7bu0iko11slgp9np3ra3fev.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "584287632529-a2qlr87a3eidgedpcdlr87iknp8aesfu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.KeshavJewellers"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
