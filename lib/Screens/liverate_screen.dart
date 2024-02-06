@@ -33,7 +33,8 @@ class LiveRateScreen extends StatefulWidget {
   State<LiveRateScreen> createState() => _LiveRateScreenState();
 }
 
-class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStateMixin {
+class _LiveRateScreenState extends State<LiveRateScreen>
+    with TickerProviderStateMixin {
   late LiveRateProvider _liverateProvider;
   late TabController _tabController;
   late TabController _tabGoldSilverController;
@@ -96,6 +97,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
   String gmkg = '';
   InsertOpenOrderService insertOpenOrderService = InsertOpenOrderService();
   late LoginData userData;
+  // double childAspectRatio = 0.0;
+  // double childAspectRatioNext = 0.0;
 
   clearFields() {
     _priceController.clear();
@@ -201,6 +204,16 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
           referenceFutureData = _liverateProvider.getFutureData();
           referenceComexData = _liverateProvider.getComexData();
           referenceNextData = _liverateProvider.getNextData();
+          // if (referenceFutureData.length < 2) {
+          //   childAspectRatio = 3.1;
+          // } else {
+          //   childAspectRatio = 1.6;
+          // }
+          // if (referenceNextData.length < 2) {
+          //   childAspectRatioNext = 3.1;
+          // } else {
+          //   childAspectRatioNext = 1.6;
+          // }
         });
         // Set Future and Next list based on Liverates and Reference
         for (var data in referenceData) {
@@ -289,9 +302,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
             mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
-                child:
-
-                GridView.builder(
+                child: GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -299,7 +310,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                             referenceComexData.length > 3
                         ? 3
                         : referenceComexData.length,
-                    crossAxisSpacing: size.width * .01,
+                    // crossAxisSpacing: size.width * .01,
                     mainAxisExtent: size.height * 0.13,
                   ),
                   itemBuilder: (builder, index) {
@@ -311,9 +322,9 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
               SizedBox(
                 height: size.height * .01,
               ),
-              /*Constants.isLogin
+              Constants.isLogin
                   ? buildLoginProductInfo(size)
-                  : */buildNonLoginProductInfo(size),
+                  : buildNonLoginProductInfo(size),
               Visibility(
                 visible: Constants.isLogin
                     ? true
@@ -333,20 +344,17 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                 height: size.height * .001,
               ),
               Flexible(
-                child:
-
-
-                GridView.builder(
+                child: GridView.builder(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: referenceFutureData.isEmpty ||
-                            referenceFutureData.length > 3
-                        ? 3
-                        : referenceFutureData.length,
-                    crossAxisSpacing: size.width * .01,
+                      crossAxisCount: referenceFutureData.isEmpty ||
+                              referenceFutureData.length > 2
+                          ? 2
+                          : referenceFutureData.length,
+                      // crossAxisSpacing: size.width * .01,
                       // mainAxisExtent: size.height * .17,
-                    childAspectRatio: 1.5,
+                      childAspectRatio: referenceFutureData.length < 2 ? 3.1 : 1.6
                   ),
                   itemBuilder: (builder, index) {
                     return buildFutureContainers(size, index);
@@ -363,12 +371,14 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: referenceNextData.isEmpty ||
-                            referenceNextData.length > 3
-                        ? 3
+                            referenceNextData.length > 2
+                        ? 2
                         : referenceNextData.length,
-                    crossAxisSpacing: size.width * .01,
-                    childAspectRatio: 1.5,
-                    // mainAxisExtent: size.height * .17,
+                    // crossAxisSpacing: size.width * .01,
+
+
+                  // mainAxisExtent: size.height * .17,
+                    childAspectRatio: referenceNextData.length < 2 ? 3.1 : 1.6
                   ),
                   itemBuilder: (builder, index) {
                     return buildNextContainers(size, index);
@@ -386,13 +396,15 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
   Widget buildNonLoginProductInfo(Size size) {
     return Column(
       children: [
-        clientHeadersDetail.rateDisplay != null && clientHeadersDetail.rateDisplay!&&liveRatesDetailMaster.isNotEmpty
+        clientHeadersDetail.rateDisplay != null &&
+                clientHeadersDetail.rateDisplay! &&
+                liveRatesDetailMaster.isNotEmpty
             ? Container(
                 height: 35.0,
                 decoration: BoxDecoration(
                   // border:
                   //     Border.all(width: 0.8, color: AppColors.secondaryColor),
-                    gradient: AppColors.primaryGradient,
+                  gradient: AppColors.primaryGradient,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 padding: const EdgeInsets.only(left: 12.0, right: 0.0),
@@ -464,7 +476,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
       // color: AppColors.secondaryColor,
       decoration: BoxDecoration(
         // border: Border.all(width: 0.8, color: AppColors.secondaryLightColor),
-          gradient: AppColors.primaryGradient,
+        gradient: AppColors.primaryGradient,
 
         borderRadius: BorderRadius.circular(8.0),
       ),
@@ -558,7 +570,6 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                   width: size.width,
                   decoration: BoxDecoration(
                     gradient: AppColors.primaryGradient,
-
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       topRight: Radius.circular(8.0),
@@ -580,7 +591,6 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                 ),
                 Expanded(
                   child: Column(
-                  
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 25.0, right: 25),
@@ -875,7 +885,6 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                   width: size.width,
                   decoration: BoxDecoration(
                     gradient: AppColors.primaryGradient,
-
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8.0),
                       topRight: Radius.circular(8.0),
@@ -906,16 +915,13 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                             Radius.circular(7),
                           ),
                         ),
-                        child:
-                        CustomText(
-                          text:
-                          referenceComexData[index].ask ?? '',
+                        child: CustomText(
+                          text: referenceComexData[index].ask ?? '',
                           fontWeight: FontWeight.bold,
                           textColor: referenceComexData[index].askTextColor,
                           size: 16.0,
                           align: TextAlign.start,
                         ),
-
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -953,7 +959,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
           if (liveRatesDetailOldChange[index].ask == '-' ||
               liveRatesDetailOldChange[index].ask == '--') {
             liveRatesDetailOldChange[index].askBGColor = AppColors.defaultColor;
-            liveRatesDetailOldChange[index].askTextColor =AppColors.textColor;
+            liveRatesDetailOldChange[index].askTextColor = AppColors.textColor;
           } else {
             dynamic oldAskRate = liveRatesDetailOldChange[index].ask!.isEmpty
                 ? 0.0
@@ -969,7 +975,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
           if (liveRatesDetailOldChange[index].bid == '-' ||
               liveRatesDetailOldChange[index].bid == '--') {
             liveRatesDetailOldChange[index].bidBGColor = AppColors.defaultColor;
-            liveRatesDetailOldChange[index].bidTextColor =AppColors.textColor;
+            liveRatesDetailOldChange[index].bidTextColor = AppColors.textColor;
             // setLabelColorsMainProduct('--', '--', liveRatesDetailMaster[index]);
           } else {
             dynamic oldBidRate = liveRatesDetailOldChange[index].bid!.isEmpty
@@ -1046,7 +1052,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                             SizedBox(
                               width: size.width * .3,
                               child: CustomText(
-                                text: '${liveRatesDetailMaster[index].name!.toUpperCase()} ',
+                                text:
+                                    '${liveRatesDetailMaster[index].name!.toUpperCase()} ',
                                 size: 14,
                                 fontWeight: FontWeight.bold,
                                 textColor: AppColors.primaryColor,
@@ -1081,13 +1088,14 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                     padding: const EdgeInsets.only(
                                         left: 10.0, right: 10.0),
                                     child: Visibility(
-                                      visible: clientHeadersDetail.buyRate != null &&
-                                          clientHeadersDetail.buyRate!,
+                                      visible:
+                                          clientHeadersDetail.buyRate != null &&
+                                              clientHeadersDetail.buyRate!,
                                       child: Container(
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(3),
-                                            color:  liveRatesDetailMaster[index]
+                                            color: liveRatesDetailMaster[index]
                                                 .bidBGColor),
                                         padding: const EdgeInsets.all(3.0),
                                         child: CustomText(
@@ -1102,8 +1110,9 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                     ),
                                   ),
                                   Visibility(
-                                    visible:clientHeadersDetail.lowRate != null &&
-                                        clientHeadersDetail.lowRate!,
+                                    visible:
+                                        clientHeadersDetail.lowRate != null &&
+                                            clientHeadersDetail.lowRate!,
                                     child: CustomText(
                                       text:
                                           'L-${liveRatesDetailMaster[index].low}',
@@ -1125,11 +1134,13 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                     padding: const EdgeInsets.only(
                                         left: 10.0, right: 10.0),
                                     child: Visibility(
-                                      visible:clientHeadersDetail.sellRate != null &&
+                                      visible: clientHeadersDetail.sellRate !=
+                                              null &&
                                           clientHeadersDetail.sellRate!,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(3),
+                                          borderRadius:
+                                              BorderRadius.circular(3),
                                           color: liveRatesDetailMaster[index]
                                               .askBGColor,
                                         ),
@@ -1139,16 +1150,18 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                               '${liveRatesDetailMaster[index].ask}',
                                           size: 14.5,
                                           fontWeight: FontWeight.bold,
-                                          textColor: liveRatesDetailMaster[index]
-                                              .askTextColor,
+                                          textColor:
+                                              liveRatesDetailMaster[index]
+                                                  .askTextColor,
                                           align: TextAlign.start,
                                         ),
                                       ),
                                     ),
                                   ),
                                   Visibility(
-                                    visible:clientHeadersDetail.highRate != null &&
-                                        clientHeadersDetail.highRate!,
+                                    visible:
+                                        clientHeadersDetail.highRate != null &&
+                                            clientHeadersDetail.highRate!,
                                     child: CustomText(
                                       text:
                                           'H-${liveRatesDetailMaster[index].high}',
@@ -1171,13 +1184,13 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
           );
   }
 
-  Widget buildSellTradeContainer(Size size, int index, AsyncSnapshot<List<Liverate>> snapshot) {
+  Widget buildSellTradeContainer(
+      Size size, int index, AsyncSnapshot<List<Liverate>> snapshot) {
     try {
       if (liveRatesDetailOldChange.isNotEmpty) {
         if (liveRatesDetailOldChange.length == liveRatesDetailMaster.length) {
           if (liveRatesDetailOldChange[index].bid == '-' ||
               liveRatesDetailOldChange[index].bid == '--') {
-
             // var oldAskRate = liveRatesDetailOldChange[index].ask!.isEmpty
             //     ? 0.0
             //     : double.parse(liveRatesDetailOldChange[index].ask!);
@@ -1253,7 +1266,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
     );
   }
 
-  Widget buildBuyTradeContainer(Size size, int index, AsyncSnapshot<List<Liverate>> snapshot) {
+  Widget buildBuyTradeContainer(
+      Size size, int index, AsyncSnapshot<List<Liverate>> snapshot) {
     try {
       if (liveRatesDetailOldChange.isNotEmpty) {
         if (liveRatesDetailOldChange.length == liveRatesDetailMaster.length) {
@@ -1342,7 +1356,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
           builder: (BuildContext context, StateSetter setState) {
             return StreamBuilder<List<Liverate>>(
               stream: getLiveRatesStream(),
-              builder: (BuildContext context,AsyncSnapshot<List<Liverate>> snapshot) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<Liverate>> snapshot) {
                 return SingleChildScrollView(
                   child: Container(
                     padding: EdgeInsets.only(
@@ -1362,7 +1377,9 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CustomText(
-                              text: liveRatesDetailMaster[index].name!.toUpperCase(),
+                              text: liveRatesDetailMaster[index]
+                                  .name!
+                                  .toUpperCase(),
                               textColor: AppColors.defaultColor,
                               size: 15.0,
                               fontWeight: FontWeight.w600,
@@ -1419,7 +1436,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                       tabs: const [
                                         Tab(
                                           child: Text(
-                                            textScaler:  TextScaler.linear(1.0),
+                                            textScaler: TextScaler.linear(1.0),
                                             'Market',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
@@ -1428,7 +1445,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                         ),
                                         Tab(
                                           child: Text(
-                                            textScaler:  TextScaler.linear(1.0),
+                                            textScaler: TextScaler.linear(1.0),
                                             'Limit',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
@@ -1455,7 +1472,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                               size, index, snapshot)),
                                       Flexible(
                                           flex: 1,
-                                          child: buildBuyTradeContainer(size, index, snapshot)),
+                                          child: buildBuyTradeContainer(
+                                              size, index, snapshot)),
                                     ],
                                   ),
                                 ),
@@ -1587,9 +1605,14 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 10.0, top: size.height * 0.02),
+                                  padding: EdgeInsets.only(
+                                      left: 8.0,
+                                      right: 8.0,
+                                      bottom: 10.0,
+                                      top: size.height * 0.02),
                                   child: Row(
-                                    mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Expanded(
                                         child: InkWell(
@@ -1627,8 +1650,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                                     width: 20,
                                                     child:
                                                         CircularProgressIndicator(
-                                                      color:
-                                                          AppColors.defaultColor,
+                                                      color: AppColors
+                                                          .defaultColor,
                                                       strokeWidth: 2,
                                                     ),
                                                   ),
@@ -1704,8 +1727,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                                                     width: 20,
                                                     child:
                                                         CircularProgressIndicator(
-                                                      color:
-                                                          AppColors.defaultColor,
+                                                      color: AppColors
+                                                          .defaultColor,
                                                       strokeWidth: 2,
                                                     ),
                                                   ),
@@ -2013,7 +2036,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
     }
   }
 
-  void callInsertOpenOrderDetailAPi(String quantity, bool isMarketSelected,bool isBuySellSelected, String price, String symbolId) {
+  void callInsertOpenOrderDetailAPi(String quantity, bool isMarketSelected,
+      bool isBuySellSelected, String price, String symbolId) {
     Functions.checkConnectivity().then((isConnected) {
       if (isConnected) {
         var objVariable = insertOpenOrderDetailRequestToJson(
@@ -2157,5 +2181,4 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
       }
     }
   }
-
 }

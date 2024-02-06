@@ -71,7 +71,7 @@ class _OrderStatus_WidgetState extends State<OrderStatus_Widget> {
                 CustomText(
                   text: widget.dataList.symbolName!.isEmpty
                       ? ''
-                      : widget.dataList.symbolName!,
+                      : widget.dataList.symbolName!.toUpperCase(),
                   textColor: AppColors.primaryColor,
                   size: 16.0,
                   fontWeight: FontWeight.bold,

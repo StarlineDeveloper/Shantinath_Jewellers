@@ -27,13 +27,13 @@ class SocketService {
         OptionBuilder().setTransports(
             ['websocket']).build()); // Set socket url for connection
     socket.disconnect();
-    debugPrint('Disconnect-----------------------------------');
+    debugPrint('Socket Disconnect');
     socket.connect();
-    debugPrint('Connect-----------------------------------');
+    debugPrint('Socket Connect');
     socket.onConnect((_) async {
       socket.emit('client', [Constants.projectName]);
       socket.emit('room', [Constants.projectName]);
-      debugPrint('Client-Emit------------------------------------------------');
+      debugPrint('Client And Room Emit');
       shared.getIsLogin().then((login) async {
         if (login) {
           final loginData = await shared.getLoginData();
@@ -41,12 +41,10 @@ class SocketService {
             userData = LoginData.getJson(json.decode(loginData));
             socket.emit(
                 "endUser", "${Constants.projectName}_${userData.loginId}");
-            debugPrint(
-                'End_Client-Emit------------------------------------------------');
+            debugPrint('End User Emit');
           }
         }
       });
-      debugPrint('onConnect-----------------------------------------------------');
     });
 
     socket.on('clientDetails', (response) {
@@ -59,14 +57,18 @@ class SocketService {
         //   listData.add(clientHeaderData);
         // }
         // provider.addClientHeaderData(listData);
-        final List<Map<String, dynamic>> dataList =List<Map<String, dynamic>>.from(data['data']);
+        final List<Map<String, dynamic>> dataList =
+            List<Map<String, dynamic>>.from(data['data']);
 
-        final listData =dataList.map((data) => ClientHeaderData.fromJson(data)).toList();
+        final listData =
+            dataList.map((data) => ClientHeaderData.fromJson(data)).toList();
 
         provider.addClientHeaderData(listData);
 
-        _addToControllerIfNotClosed(listData, NotifySocketUpdate.controllerClientData);
-        _addToControllerIfNotClosed(listData, NotifySocketUpdate.controllerHome);
+        _addToControllerIfNotClosed(
+            listData, NotifySocketUpdate.controllerClientData);
+        _addToControllerIfNotClosed(
+            listData, NotifySocketUpdate.controllerHome);
       }
     });
 
@@ -241,8 +243,6 @@ class SocketService {
     });
 
     socket.on('accountDetails', (accountDetails) {
-      debugPrint(
-          'Account-details-------------------------------------$accountDetails');
       if (accountDetails[0]["Status"] == false) {
         shared.setIsLogin(false);
         Constants.isLogin = false;
@@ -252,20 +252,23 @@ class SocketService {
         Constants.loginName = account.name!;
         provider.addAccountData(account);
         socket.emit('group', '${Constants.projectName}_${account.groupId}');
-        _addToControllerIfNotClosed(accountDetails, NotifySocketUpdate.controllerAccountDetails);
+        _addToControllerIfNotClosed(
+            accountDetails, NotifySocketUpdate.controllerAccountDetails);
       }
     });
 
     socket.on('Orders', (orders) {
       if (orders != "" && orders == "true" && orders.split("~~")[0] == "true") {
-        _addToControllerIfNotClosed(orders, NotifySocketUpdate.controllerOrderDetails);
+        _addToControllerIfNotClosed(
+            orders, NotifySocketUpdate.controllerOrderDetails);
       } else if (orders != "" &&
-          orders.split("~~")[0] == "true" /*&&
-          orders.split("~~")[2].trim() == userData.loginId*/) {
-        _addToControllerIfNotClosed( orders, NotifySocketUpdate.controllerOrderDetails);
+              orders.split("~~")[0] ==
+                  "true" /*&&
+          orders.split("~~")[2].trim() == userData.loginId*/
+          ) {
+        _addToControllerIfNotClosed(
+            orders, NotifySocketUpdate.controllerOrderDetails);
       }
-
-      debugPrint('Orders-------------------------------------------$orders');
     });
 
     socket.on('groupDetails', (groupDetails) {
@@ -300,8 +303,6 @@ class SocketService {
       }
       provider.addDropDownData(dropDown);
       _addToControllerIfNotClosed(responseData, NotifySocketUpdate.dropDown);
-      debugPrint(
-          "GroupDetails-----------------------------------$responseData");
     });
 
     socket.on('isLogin', (isLogin) {
@@ -325,15 +326,15 @@ class SocketService {
     // });
 
     socket.onConnectError((err) => debugPrint('$err'));
-    socket.onError((err) {debugPrint('$err');
+    socket.onError((err) {
+      debugPrint('$err');
     });
   }
 
-  static void _addToControllerIfNotClosed<T>(T data, StreamController<T>? controller) {
+  static void _addToControllerIfNotClosed<T>(
+      T data, StreamController<T>? controller) {
     if (controller != null && !controller.isClosed) {
       controller.sink.add(data);
     }
   }
-
-
 }
