@@ -289,7 +289,9 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
             mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
-                child: GridView.builder(
+                child:
+
+                GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -297,8 +299,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                             referenceComexData.length > 3
                         ? 3
                         : referenceComexData.length,
-                    // crossAxisSpacing: size.width * .01,
-                    mainAxisExtent: size.height * 0.12,
+                    crossAxisSpacing: size.width * .01,
+                    mainAxisExtent: size.height * 0.13,
                   ),
                   itemBuilder: (builder, index) {
                     return buildComexContainers(size, index);
@@ -331,7 +333,10 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                 height: size.height * .001,
               ),
               Flexible(
-                child: GridView.builder(
+                child:
+
+
+                GridView.builder(
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -340,9 +345,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                         ? 3
                         : referenceFutureData.length,
                     crossAxisSpacing: size.width * .01,
-                      mainAxisExtent: size.height * .14,
-                    // Calculate dynamically
-
+                      // mainAxisExtent: size.height * .17,
+                    childAspectRatio: 1.5,
                   ),
                   itemBuilder: (builder, index) {
                     return buildFutureContainers(size, index);
@@ -363,7 +367,8 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                         ? 3
                         : referenceNextData.length,
                     crossAxisSpacing: size.width * .01,
-                    mainAxisExtent: size.height * .14,
+                    childAspectRatio: 1.5,
+                    // mainAxisExtent: size.height * .17,
                   ),
                   itemBuilder: (builder, index) {
                     return buildNextContainers(size, index);
@@ -540,14 +545,14 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
     return referenceFutureData.isEmpty
         ? Container()
         : Card(
-            // color: AppColor.defaultColor,
+            // color: AppColors.primaryLightColor,
             elevation: 10,
             // shadowColor: AppColors.hintColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   width: size.width,
@@ -575,6 +580,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                 ),
                 Expanded(
                   child: Column(
+                  
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 25.0, right: 25),
@@ -881,7 +887,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                       text: referenceComexData[index].symbolName ?? '',
                       fontWeight: FontWeight.bold,
                       textColor: AppColors.primaryColor,
-                      size: 15.0,
+                      size: 14.0,
                       align: TextAlign.center,
                     ),
                   ),
@@ -1163,7 +1169,6 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
               ),
             ),
           );
-
   }
 
   Widget buildSellTradeContainer(Size size, int index, AsyncSnapshot<List<Liverate>> snapshot) {
@@ -1357,7 +1362,7 @@ class _LiveRateScreenState extends State<LiveRateScreen> with TickerProviderStat
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: CustomText(
-                              text: '${liveRatesDetailMaster[index].name}',
+                              text: liveRatesDetailMaster[index].name!.toUpperCase(),
                               textColor: AppColors.defaultColor,
                               size: 15.0,
                               fontWeight: FontWeight.w600,
