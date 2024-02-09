@@ -4,15 +4,18 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-// import 'package:app_settings/app_settings.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-import 'package:in_app_review/in_app_review.dart';
+
+// import 'package:in_app_review/in_app_review.dart';
 import 'package:marquee/marquee.dart';
 import 'package:notification_permissions/notification_permissions.dart';
+import 'package:open_settings_plus/core/open_settings_plus.dart';
+
+// import 'package:open_settings_plus/open_settings_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:store_redirect/store_redirect.dart';
@@ -40,7 +43,8 @@ import '../Services/openorder_service.dart';
 import '../Services/socket_service.dart';
 import '../Utils/shared.dart';
 import '../Widgets/custom_text.dart';
-import 'coin_screen.dart';
+
+// import 'coin_screen.dart';
 import 'economiccalender_scree.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -1719,16 +1723,30 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     lastTap = now;
   }
 
-  Future<void> checkForInAppReview() async {
-    final InAppReview _inAppReview = InAppReview.instance;
+  // Future<void> checkForInAppReview() async {
+  //   final InAppReview _inAppReview = InAppReview.instance;
 
-    if (await _inAppReview.isAvailable()) {
-      _inAppReview.requestReview();
-      // _inAppReview.openStoreListing(appStoreId: Constants.iOSAppId, microsoftStoreId: Constants.androidAppRateAndUpdate);
-    }
-  }
+  //   if (await _inAppReview.isAvailable()) {
+  //     _inAppReview.requestReview();
+  //     // _inAppReview.openStoreListing(appStoreId: Constants.iOSAppId, microsoftStoreId: Constants.androidAppRateAndUpdate);
+  //   }
+  // }
 
   void turnOnInternet() {
-    AppSettings.openAppSettingsPanel(AppSettingsPanelType.internetConnectivity);
+    var shared = OpenSettingsPlus.shared;
+    // switch (shared.runtimeType) {
+    //   case OpenSettingsPlusAndroid:
+    //     (shared as OpenSettingsPlusAndroid).wifi();
+    //     break;
+    //   case OpenSettingsPlusIOS:
+    //     (shared as OpenSettingsPlusIOS).wifi();
+    //     break;
+    //   default:
+    //     throw Exception('Platform not supported');
+    // }
+    Platform.isAndroid
+        ? AppSettings.openAppSettingsPanel(
+            AppSettingsPanelType.internetConnectivity)
+        : (shared as OpenSettingsPlusIOS).settings();
   }
 }

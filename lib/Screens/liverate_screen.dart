@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:terminal_demo/Constants/images.dart';
 import 'dart:io';
 import '../Constants/app_colors.dart';
 import '../Constants/constant.dart';
@@ -375,8 +376,6 @@ class _LiveRateScreenState extends State<LiveRateScreen>
                         ? 2
                         : referenceNextData.length,
                     // crossAxisSpacing: size.width * .01,
-
-
                   // mainAxisExtent: size.height * .17,
                     childAspectRatio: referenceNextData.length < 2 ? 3.1 : 1.6
                   ),
@@ -999,7 +998,7 @@ class _LiveRateScreenState extends State<LiveRateScreen>
     }
 
     return liveRatesDetailMaster.isEmpty
-        ? Container()
+        ? SizedBox()
         : Padding(
             padding: const EdgeInsets.only(top: 4.0, left: 0.0, right: 0.0),
             child: GestureDetector(
@@ -1053,7 +1052,7 @@ class _LiveRateScreenState extends State<LiveRateScreen>
                               width: size.width * .3,
                               child: CustomText(
                                 text:
-                                    '${liveRatesDetailMaster[index].name!.toUpperCase()} ',
+                                    liveRatesDetailMaster[index].name!.trim().toUpperCase(),
                                 size: 14,
                                 fontWeight: FontWeight.bold,
                                 textColor: AppColors.primaryColor,
@@ -1064,7 +1063,7 @@ class _LiveRateScreenState extends State<LiveRateScreen>
                               width: size.width * .3,
                               child: CustomText(
                                 text:
-                                    'Time-${liveRatesDetailMaster[index].time}',
+                                    'Time-${liveRatesDetailMaster[index].time!.trim()}',
                                 size: 10.5,
                                 fontWeight: FontWeight.bold,
                                 textColor: AppColors.secondaryTextColor,

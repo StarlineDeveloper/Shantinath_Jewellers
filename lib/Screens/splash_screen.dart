@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       } else {
         startTimer();
-        Functions.showToast(Constants.noInternet);
+        // Functions.showToast(Constants.noInternet);
       }
     });
   }

@@ -331,8 +331,7 @@ class SocketService {
     });
   }
 
-  static void _addToControllerIfNotClosed<T>(
-      T data, StreamController<T>? controller) {
+  static void _addToControllerIfNotClosed<T>(T data, StreamController<T>? controller) {
     if (controller != null && !controller.isClosed) {
       controller.sink.add(data);
     }
