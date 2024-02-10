@@ -5,4 +5,5 @@ class PageRoutes {
   static const String Login_Screen = '/Login_Screen';
   static const String economicCalenderScreen = '/economicCalenderScreen';
   static const String coinScreen = '/CoinRate';
+  static const String Otr_Screen = '/Otr_Screen';
 }

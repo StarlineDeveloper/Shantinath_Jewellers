@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.shantinathjewellers",
+  "applicationId": "com.somnathspot",
   "variantName": "release",
   "elements": [
     {
@@ -13,7 +13,7 @@
       "attributes": [],
       "versionCode": 1,
       "versionName": "1.0",
-      "outputFile": "shantinathjewellers-release.apk"
+      "outputFile": "Somnath Spot-release.apk"
     }
   ],
   "elementType": "File"

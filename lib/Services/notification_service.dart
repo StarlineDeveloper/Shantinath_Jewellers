@@ -135,8 +135,8 @@ class NotificationService {
         await _notificationDetails();
     await localNotifications.show(
       0,
-      title,
       body,
+      title,
       platformChannelSpecifics,
       payload: payload,
     );

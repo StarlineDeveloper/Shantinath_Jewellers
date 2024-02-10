@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       if (!Platform.isIOS) {
         NotificationService().showLocalNotification(
             body: message.data['title'],
-            title: message.data['body'],
+            title:  message.data['body'],
             payload: 'Hello');
       }
     });
