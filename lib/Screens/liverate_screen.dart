@@ -1223,7 +1223,7 @@ class _LiveRateScreenState extends State<LiveRateScreen>
     } catch (e) {
       debugPrint(e.toString());
     }
-    liveRatesDetailOldChange = liveRatesDetailMaster;
+    // liveRatesDetailOldChange = liveRatesDetailMaster;
     //  if (liveRatesDetail.length - 1 == index) {
     //   liveRatesDetailOldChange = liveRatesDetail;
     // }
